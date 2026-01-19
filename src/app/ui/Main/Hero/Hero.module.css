@@ -1,0 +1,13 @@
+.hero{
+    width: 100%;
+    height: 700px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.heroTitle{
+    color: #ffffff;
+    background: #0D253F;
+    display: inline-block;
+    padding: 5px 25px;
+}

@@ -1,0 +1,38 @@
+.header{
+    background: #1ac9d9;
+}
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+.logo{
+    display: block;
+    width: 150px;
+    background:  #0d253f;
+    padding: 10px;
+}
+.navItems {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+.navItem{
+    list-style: none;
+}
+.navLink{
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px 0;
+    color: #ffffff;
+    font-size: 20px;
+    &.active{
+        color:  #0d253f;
+        text-decoration: underline;
+        font-weight: 500;
+    }
+}
