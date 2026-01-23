@@ -1,5 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import type {SearchMoviesResponse} from "@/features/api/popularApi/popularApi.types.ts";
+import type {SearchMoviesArgs, SearchMoviesResponse} from "@/features/api/popularApi/popularApi.types.ts";
 
 export const searchApi = createApi({
   reducerPath: 'searchApi',
@@ -10,17 +10,20 @@ export const searchApi = createApi({
     }
   }),
   endpoints: (builder) => ({
-    searchMovies: builder.query<SearchMoviesResponse, {query: string; page: number}>({
+    searchMovies: builder.query<SearchMoviesResponse, SearchMoviesArgs>({
       query: ({query, page}) => ({
         // url: 'search/movie?include_adult=false&language=en-US&page=4',
         url: 'search/movie',
         params: {
-          query,
+          query: query.trim(),
           page
         }
       })
+    }),
+    getMovie: builder.query({
+      query: (id) => `movie/${id}`
     })
   })
 })
 
-export const { useSearchMoviesQuery } = searchApi
+export const { useSearchMoviesQuery, useGetMovieQuery } = searchApi

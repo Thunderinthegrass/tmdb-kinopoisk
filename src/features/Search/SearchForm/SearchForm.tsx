@@ -1,9 +1,12 @@
 import {useState} from "react";
-import {useNavigate} from "react-router";
+import {useNavigate, useSearchParams} from "react-router";
 import * as React from "react";
+import s from "./SearchForm.module.css"
 
 export const SearchForm = () => {
-  const [value, setValue] = useState('');
+  const [params] = useSearchParams();
+  const query = params.get("query") ?? "";
+  const [value, setValue] = useState(query);
   const navigate = useNavigate();
 
   const submitHandler =(e: React.FormEvent) => {
@@ -12,9 +15,9 @@ export const SearchForm = () => {
   }
 
   return (
-    <form onSubmit={submitHandler}>
-      <input value={value} onChange={(e) => setValue(e.target.value)} />
-      <button>Поиск</button>
+    <form className={s.searchForm} onSubmit={submitHandler}>
+      <input className={s.searchInput} type="text" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search" />
+      <button className={s.searchButton} disabled={!value}>Поиск</button>
     </form>
   );
 };

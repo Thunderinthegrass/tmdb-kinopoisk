@@ -12,6 +12,12 @@ export const popularApi = createApi({
   endpoints: (build) => ({
     fetchPopularMovies: build.query<MoviesResponse, void>({
       query: () => ({method: 'get', url: 'movie/popular?language=en-US&page=1'}),
+      transformResponse: (response: MoviesResponse): MoviesResponse => {
+        return {
+          ...response,
+          results: response.results.slice(0, 6)
+        }
+      }
     }),
     fetchRandomPopularMovie: build.query<Movie, void>({
       query: () => ({method: 'get', url: 'movie/popular?language=en-US&page=1'}),

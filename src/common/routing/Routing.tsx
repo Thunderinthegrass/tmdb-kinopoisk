@@ -5,6 +5,7 @@ import {CategoryMovies} from "@/features";
 import {FilteredMovies} from "@/features";
 import {Search} from "@/features";
 import {Favorites} from "@/features";
+import {Movie} from "@/features/Movie/Movie.tsx";
 
 
 export const Routing = () => {
@@ -15,6 +16,7 @@ export const Routing = () => {
       <Route path={Path.FilteredMovies} element={<FilteredMovies />} />
       <Route path={Path.Search} element={<Search />} />
       <Route path={Path.Favorites} element={<Favorites />} />
+      <Route path={Path.Movie} element={<Movie />} />
     </Routes>
   );
 };

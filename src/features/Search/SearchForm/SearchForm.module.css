@@ -1,0 +1,25 @@
+.searchForm{
+    display: flex;
+    gap: 14px;
+    margin-left: 200px;
+}
+.searchInput{
+    padding: 10px 17px;
+    width: 350px;
+    border-radius: 3px;
+}
+.searchButton{
+    padding: 10px 27px;
+    border: none;
+    background: #061660;
+    color: #ffffff;
+    border-radius: 3px;
+    transition: .3s;
+}
+.searchButton:hover{
+
+}
+.searchButton[disabled]{
+    background: #3049be;
+    cursor: not-allowed;
+}

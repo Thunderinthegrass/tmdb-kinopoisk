@@ -4,6 +4,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-image: linear-gradient(0deg, rgb(7, 24, 42) 0%, rgba(255, 255, 255, 1) 100%);
 }
 .heroTitle{
     color: #ffffff;

@@ -5,12 +5,12 @@ import {SearchForm} from "@/features/Search/SearchForm/SearchForm.tsx";
 export const Hero = () => {
   const { data, isLoading } = useFetchRandomPopularMovieQuery()
 
-  console.log(data)
+  // console.log(data)
 
   if (isLoading || !data || !data.backdrop_path) return "Крутилка"
 
   const heroStyle = {
-    backgroundImage: `url(https://image.tmdb.org/t/p/original${data.backdrop_path})`,
+    backgroundImage: `linear-gradient(transparent, rgba(7, 24, 42, 1) 100%), url(https://image.tmdb.org/t/p/original${data.backdrop_path})`,
   }
 
   return (
