@@ -1,34 +1,31 @@
-import {useFetchTopRatedMoviesQuery} from "@/features/api/topRatedApi/topRatedApi.ts";
+import {useFetchUpcomingMoviesQuery} from "@/features/api/upcomingApi/upcomingApi.ts";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
-import {Link} from "react-router";
 import noImage from "@/assets/no-image.png";
+import {Link} from "react-router";
 import {RatingBadge} from "@/common/components/RatingBadge/RatingBadge.tsx";
-import { useSelector } from "react-redux";
+import {useSelector} from "react-redux";
 import type {RootState} from "@/app/model/store.ts";
 import {FavoriteButton} from "@/common/components/FavoriteButton/FavoriteButton.tsx";
 
-export const TopRatedSection = () => {
+export const UpcomingSection = () => {
 
-  const {data, isLoading} = useFetchTopRatedMoviesQuery()
+  const { data, isLoading } = useFetchUpcomingMoviesQuery()
 
   const favorites = useSelector((state: RootState) => state.favorites.movies)
-  // console.log("favorites - ",favorites)
 
-  if (isLoading || !data) {
-    return <div>'Ждите...'</div>
+  if (isLoading) {
+    return <div>Загрузка происходит...</div>;
   }
-  // console.log(data)
 
+  console.log(data)
   return (
-    <div>
-      <div className={s.section}>
-        <div className={s.container}>
-          <h2>Top Rated Movies</h2>
-          <div className={s.moviesWrapper}>
-            {data?.results?.map((movie) => {
-
+    <div className={s.section}>
+      <div className={s.container}>
+        <h2>Upcoming Movies</h2>
+        <div className={s.moviesWrapper}>
+          {
+            data?.results?.map((movie) => {
               const isFavorite = favorites.some(item => item.id === movie.id);
-              // console.log(isFavorite)
 
               return (
                 <div key={movie.id} className={s.movie}>
@@ -46,8 +43,8 @@ export const TopRatedSection = () => {
                   <FavoriteButton isFavorite={isFavorite} movie={movie} />
                 </div>
               )
-            })}
-          </div>
+            })
+          }
         </div>
       </div>
     </div>

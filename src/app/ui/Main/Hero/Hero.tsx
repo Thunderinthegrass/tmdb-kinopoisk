@@ -15,7 +15,7 @@ export const Hero = () => {
 
   return (
     <div className={s.hero} style={heroStyle}>
-      <h2 className={s.heroTitle}>{data.original_title}</h2>
+      <h2 className={s.heroTitle}>{data.title}</h2>
       <SearchForm />
     </div>
   );

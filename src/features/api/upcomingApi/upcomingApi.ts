@@ -1,19 +1,19 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import type { MoviesResponse} from "@/features/api/popularApi/popularApi.types.ts";
+import type {MoviesResponse} from "@/features/api/popularApi/popularApi.types.ts";
 
-export const topRatedApi = createApi({
-  reducerPath: 'topRatedApi',
+export const upcomingApi = createApi({
+  reducerPath: "upcomingApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.themoviedb.org/3/',
+    baseUrl: import.meta.env.VITE_BASE_URL,
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
     }
   }),
   endpoints: (build) => ({
-    fetchTopRatedMovies: build.query<MoviesResponse, void>({
+    fetchUpcomingMovies: build.query<MoviesResponse, void>({
       query: () => ({
         method: 'get',
-        url: 'movie/top_rated?language=ru-RU&page=1'
+        url: 'movie/upcoming?language=ru-RU&page=1'
       }),
       transformResponse: (response: MoviesResponse): MoviesResponse => {
         return {
@@ -25,4 +25,4 @@ export const topRatedApi = createApi({
   })
 })
 
-export const { useFetchTopRatedMoviesQuery } = topRatedApi;
+export const { useFetchUpcomingMoviesQuery } = upcomingApi;

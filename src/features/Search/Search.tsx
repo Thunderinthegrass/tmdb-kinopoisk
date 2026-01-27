@@ -32,6 +32,11 @@ export const Search = () => {
           <p>Фильмы не найдены</p>
         )}
 
+        {!data?.results &&
+          <p>
+          Введите какое-нибудь название фильма и нажмите кнопку "Поиск", либо Enter на клавиатуре
+        </p>}
+
         <div className={s.movieContainer}>
           {
             data?.results?.map((item) => (
@@ -45,7 +50,7 @@ export const Search = () => {
             ))
           }
         </div>
-        {data?.results ? (
+        {(data?.results && data.page > 1) && (
           <div className={s.pagination}>
             <button className={s.paginationBtn} disabled={isLoading || page === 1}
                     onClick={() => setParams({ query, page: String(page - 1) })}
@@ -61,10 +66,6 @@ export const Search = () => {
               Вперёд
             </button>
           </div>
-        ) : (
-          <p>
-            Введите какое-нибудь название фильма и нажмите кнопку "Поиск", либо Enter на клавиатуре
-          </p>
         )}
       </div>
     </div>
