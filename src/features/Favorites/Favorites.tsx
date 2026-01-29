@@ -1,12 +1,13 @@
 import {useSelector} from "react-redux";
-import {Link} from "react-router";
+import {Link} from "react-router-dom";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
 import noImage from "@/assets/no-image.png";
 import {RatingBadge} from "@/common/components/RatingBadge/RatingBadge.tsx";
+import type {RootState} from "@/app/model/store.ts";
 
 export const Favorites = () => {
 
-  const favorites = useSelector(state => state.favorites.movies)
+  const favorites = useSelector((state: RootState) => state.favorites.movies)
 
   return (
     <div className={s.container}>

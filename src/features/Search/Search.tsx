@@ -1,5 +1,5 @@
 import { useSearchMoviesQuery } from "@/features/api/searchApi/searchApi.ts";
-import {Link, useSearchParams} from "react-router";
+import {Link, useSearchParams} from "react-router-dom";
 import {SearchForm} from "@/features/Search/SearchForm/SearchForm.tsx";
 import noImage from "@/assets/no-image.png";
 import s from "./Search.module.css"

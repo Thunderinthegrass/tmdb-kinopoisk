@@ -1,4 +1,4 @@
-import {useParams} from "react-router";
+import {useParams} from "react-router-dom";
 import {useGetMovieQuery} from "@/features/api/searchApi/searchApi.ts";
 import s from "./Movie.module.css"
 

@@ -1,7 +1,7 @@
 import {useFetchUpcomingMoviesQuery} from "@/features/api/upcomingApi/upcomingApi.ts";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
 import noImage from "@/assets/no-image.png";
-import {Link} from "react-router";
+import {Link} from "react-router-dom";
 import {RatingBadge} from "@/common/components/RatingBadge/RatingBadge.tsx";
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/model/store.ts";

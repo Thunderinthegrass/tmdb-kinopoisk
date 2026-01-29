@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useNavigate, useSearchParams} from "react-router";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import * as React from "react";
 import s from "./SearchForm.module.css"
 

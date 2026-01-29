@@ -1,15 +1,15 @@
 import s from "./Header.module.css"
 import {Path} from "@/common/routing"
-import {NavLink} from "react-router";
+import {NavLink} from "react-router-dom";
 import logo from "@/assets/logo.svg"
 
 export const Header = () => {
 
   const navItems = [
     {to: Path.Main, label: "Main"},
+    {to: Path.MoviesLayout, label: "Category Movies"},
     {to: Path.FilteredMovies, label: "Filtered Movies"},
     {to: Path.Search, label: "Search"},
-    {to: Path.CategoryMovies, label: "Category Movies"},
     {to: Path.Favorites, label: "Favorites Movies"},
   ]
   return (

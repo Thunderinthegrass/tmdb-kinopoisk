@@ -1,6 +1,6 @@
 import {useFetchTopRatedMoviesQuery} from "@/features/api/topRatedApi/topRatedApi.ts";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
-import {Link} from "react-router";
+import {Link} from "react-router-dom";
 import noImage from "@/assets/no-image.png";
 import {RatingBadge} from "@/common/components/RatingBadge/RatingBadge.tsx";
 import { useSelector } from "react-redux";

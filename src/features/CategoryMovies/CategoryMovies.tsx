@@ -1,7 +1,7 @@
 export const CategoryMovies = () => {
   return (
     <div>
-      Кактегории
+      Категории
     </div>
   );
 };

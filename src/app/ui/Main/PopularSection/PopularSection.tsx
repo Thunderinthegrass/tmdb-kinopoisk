@@ -1,6 +1,6 @@
 import {useFetchPopularMoviesQuery} from "@/features/api/popularApi/popularApi.ts";
 import noImage from "@/assets/no-image.png";
-import {Link} from "react-router";
+import {Link} from "react-router-dom";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
 import {RatingBadge} from "@/common/components/RatingBadge/RatingBadge.tsx";
 import {useSelector} from "react-redux";
@@ -12,6 +12,7 @@ export const PopularSection = () => {
   const {data, isLoading} = useFetchPopularMoviesQuery();
 
   const favorites = useSelector((state: RootState) => state.favorites.movies);
+
   {
     if (isLoading || !data) return "Крутилка"
   }
@@ -21,6 +22,12 @@ export const PopularSection = () => {
     <div className={s.section}>
       <div className={s.container}>
         <h2>Popular Movies</h2>
+        <Link
+          to={`/movies`}
+          className={s.allMoviesLink}
+        >
+          Показать больше
+        </Link>
         <div className={s.moviesWrapper}>
           {data?.results?.map((movie) => {
 

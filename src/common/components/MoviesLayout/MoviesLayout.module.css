@@ -1,0 +1,27 @@
+.categoryButtons{
+    display: flex;
+    gap: 15px;
+    padding: 30px 0;
+}
+.categoryBtn{
+    display: block;
+    padding: 5px 14px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    background: #3049BE;
+    border-radius: 3px;
+    border: 2px solid #3049BE;
+    transition: background 0.2s;
+}
+.categoryBtn:hover{
+    background: #ffffff;
+    color: #3049BE;
+}
+.categoryBtn.active{
+    background: #061660;
+}
+.categoryBtn.active:hover {
+    color: #ffffff;
+    background: #061660;
+}

@@ -1,6 +1,10 @@
 export const Path = {
   Main: "/",
-  CategoryMovies: "categoryMoves",
+  MoviesLayout: "movies",
+  Popular: "popular",
+  TopRated: "top-rated",
+  Upcoming: "upcoming",
+  NowPlaying: "now-playing",
   FilteredMovies: "filteredMovies",
   Search: "search",
   Favorites: "favorites",

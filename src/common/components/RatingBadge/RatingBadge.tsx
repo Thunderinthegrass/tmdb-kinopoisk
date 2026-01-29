@@ -6,10 +6,10 @@ type RatingBadgeProps = {
 
 export const RatingBadge = ({rating}: RatingBadgeProps) => {
 
-  rating = Math.round(rating * 10) / 10;
-  const isPositiveRating = rating > 7 ? s.positiveRating : s.negativeRating;
+  const ratingRound = Math.round(rating * 10) / 10;
+  const classRating = rating > 7 ? s.positiveRating : s.negativeRating;
 
   return (
-    <span className={`${s.ratingBadge} ${isPositiveRating}`}>{rating}</span>
+    <span className={`${s.ratingBadge} ${classRating}`}>{ratingRound}</span>
   );
 };
