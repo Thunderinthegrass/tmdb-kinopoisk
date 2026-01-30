@@ -1,4 +1,3 @@
-import {useFetchPopularMoviesQuery} from "@/features/api/popularApi/popularApi.ts";
 import noImage from "@/assets/no-image.png";
 import {Link} from "react-router-dom";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
@@ -6,10 +5,11 @@ import {RatingBadge} from "@/common/components/RatingBadge/RatingBadge.tsx";
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/model/store.ts";
 import {FavoriteButton} from "@/common/components/FavoriteButton/FavoriteButton.tsx";
+import {useFetchNowPlayingMoviesQuery} from "@/features/api/nowPlayingApi/nowPlayingApi.ts";
 
-export const PopularSection = () => {
+export const NowPlayingSection = () => {
 
-  const {data, isLoading} = useFetchPopularMoviesQuery();
+  const {data, isLoading} = useFetchNowPlayingMoviesQuery();
 
   const favorites = useSelector((state: RootState) => state.favorites.movies);
 
@@ -21,7 +21,7 @@ export const PopularSection = () => {
   return (
     <div className={s.section}>
       <div className={s.container}>
-        <h2>Popular Movies</h2>
+        <h2>Now Playing Movies</h2>
         <Link
           to={`/movies`}
           className={s.allMoviesLink}

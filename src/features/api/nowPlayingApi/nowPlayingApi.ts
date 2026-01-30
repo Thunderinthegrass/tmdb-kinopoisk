@@ -1,8 +1,8 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import type {Movie, MoviesResponse} from "@/features/api/popularApi/popularApi.types.ts";
 
-export const popularApi = createApi({
-  reducerPath: "popularApi",
+export const nowPlayingApi = createApi({
+  reducerPath: "nowPlayingApi",
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_BASE_URL,
     headers: {
@@ -10,11 +10,11 @@ export const popularApi = createApi({
     }
   }),
   endpoints: (build) => ({
-    fetchAllPopularMovies: build.query<MoviesResponse, number>({
-      query: (page = 1) => ({url: `movie/popular?language=ru-RU&${page}`}),
+    fetchAllNowPlayingMovies: build.query<MoviesResponse, number>({
+      query: (page = 1) => ({url: `movie/now_playing?language=ru-RU&${page}`}),
     }),
-    fetchPopularMovies: build.query<MoviesResponse, void>({
-      query: () => ({method: 'get', url: 'movie/popular?language=ru-RU&page=1'}),
+    fetchNowPlayingMovies: build.query<MoviesResponse, void>({
+      query: () => ({method: 'get', url: 'movie/now_playing?language=ru-RU&page=1'}),
       transformResponse: (response: MoviesResponse): MoviesResponse => {
         return {
           ...response,
@@ -22,8 +22,8 @@ export const popularApi = createApi({
         }
       }
     }),
-    fetchRandomPopularMovie: build.query<Movie, void>({
-      query: () => ({method: 'get', url: 'movie/popular?language=ru-RU&page=1'}),
+    fetchRandomNowPlayingMovie: build.query<Movie, void>({
+      query: () => ({method: 'get', url: 'movie/now_playing?language=ru-RU&page=1'}),
       transformResponse: (response: MoviesResponse): Movie => {
         if (response.results && response.results.length > 0) {
           const randomMovie = Math.floor(Math.random() * response.results.length);
@@ -35,4 +35,4 @@ export const popularApi = createApi({
   })
 })
 
-export const { useFetchPopularMoviesQuery, useFetchRandomPopularMovieQuery, useFetchAllPopularMoviesQuery } = popularApi;
+export const { useFetchNowPlayingMoviesQuery, useFetchRandomNowPlayingMovieQuery, useFetchAllNowPlayingMoviesQuery } = nowPlayingApi;

@@ -16,7 +16,7 @@ export const Search = () => {
   // console.log(params)
 
   const { data, isLoading, isError } = useSearchMoviesQuery({query, page}, { skip: !query })
-  // console.log(data)
+  console.log(data)
 
   return (
     <div className={s.searchPage}>
@@ -50,7 +50,7 @@ export const Search = () => {
             ))
           }
         </div>
-        {(data?.results && data.page > 1) && (
+        {(data?.results && data.total_pages > 1) && (
           <div className={s.pagination}>
             <button className={s.paginationBtn} disabled={isLoading || page === 1}
                     onClick={() => setParams({ query, page: String(page - 1) })}

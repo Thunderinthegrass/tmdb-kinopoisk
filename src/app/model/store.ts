@@ -5,6 +5,7 @@ import { searchApi } from "@/features/api/searchApi/searchApi.ts";
 import {topRatedApi} from "@/features/api/topRatedApi/topRatedApi.ts";
 import {upcomingApi} from "@/features/api/upcomingApi/upcomingApi.ts";
 import favoritesReducer from "@/app/model/favoritesSlice.ts";
+import {nowPlayingApi} from "@/features/api/nowPlayingApi/nowPlayingApi.ts";
 
 
 export const  store = configureStore({
@@ -14,6 +15,7 @@ export const  store = configureStore({
     [searchApi.reducerPath]: searchApi.reducer,
     [topRatedApi.reducerPath]: topRatedApi.reducer,
     [upcomingApi.reducerPath]: upcomingApi.reducer,
+    [nowPlayingApi.reducerPath]: nowPlayingApi.reducer,
   },
   middleware: (getDefaultMiddleware) => 
     getDefaultMiddleware().concat(
@@ -21,6 +23,7 @@ export const  store = configureStore({
       searchApi.middleware,
       topRatedApi.middleware,
       upcomingApi.middleware,
+      nowPlayingApi.middleware,
     ),
 })
 

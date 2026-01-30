@@ -13,12 +13,14 @@ export const MoviesLayout = () => {
 
   return (
     <div>
-      <div className={s.categoryButtons}>
-        {categoryItems.map((item) => (
-          <NavLink to={`${item.to}`} className={({isActive}) => isActive ? `${s.categoryBtn} ${s.active}` : s.categoryBtn}>
-            {item.label}
-          </NavLink>
-        ))}
+      <div className={s.container}>
+        <div className={s.categoryButtons}>
+          {categoryItems.map((item) => (
+            <NavLink to={`${item.to}`} className={({isActive}) => isActive ? `${s.categoryBtn} ${s.active}` : s.categoryBtn}>
+              {item.label}
+            </NavLink>
+          ))}
+        </div>
       </div>
       <Outlet />
     </div>
