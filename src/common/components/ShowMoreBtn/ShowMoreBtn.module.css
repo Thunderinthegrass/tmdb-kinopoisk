@@ -1,0 +1,17 @@
+.allMoviesLink{
+    display: inline-block;
+    border: 1px solid #040d42;
+    color: #202021;
+    align-self: flex-end;
+    padding: 5px 17px;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: .3s;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+.allMoviesLink:hover{
+    background: #040d42;
+    color: #ffffff;
+}

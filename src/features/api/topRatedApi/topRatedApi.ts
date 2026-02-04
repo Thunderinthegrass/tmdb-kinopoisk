@@ -4,12 +4,17 @@ import type { MoviesResponse} from "@/features/api/popularApi/popularApi.types.t
 export const topRatedApi = createApi({
   reducerPath: 'topRatedApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.themoviedb.org/3/',
+    baseUrl: import.meta.env.VITE_BASE_URL,
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
     }
   }),
   endpoints: (build) => ({
+    fetchAllTopRatedMovies: build.query<MoviesResponse, number>({
+      query: (page = 1) => ({
+        url: `movie/top_rated?language=ru-RU&page=${page}`
+      })
+    }),
     fetchTopRatedMovies: build.query<MoviesResponse, void>({
       query: () => ({
         method: 'get',
@@ -25,4 +30,4 @@ export const topRatedApi = createApi({
   })
 })
 
-export const { useFetchTopRatedMoviesQuery } = topRatedApi;
+export const { useFetchTopRatedMoviesQuery, useFetchAllTopRatedMoviesQuery } = topRatedApi;

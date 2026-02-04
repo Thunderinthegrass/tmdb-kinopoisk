@@ -1,23 +1,29 @@
 import {useFetchAllPopularMoviesQuery} from "@/features/api/popularApi/popularApi.ts";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
 import sAll from "./PopularPage.module.css"
-import {Link} from "react-router-dom";
-import noImage from "@/assets/no-image.png";
-import {RatingBadge} from "@/common/components/RatingBadge/RatingBadge.tsx";
-import {FavoriteButton} from "@/common/components/FavoriteButton/FavoriteButton.tsx";
+import {useSearchParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/model/store.ts";
+import {Pagination} from "@/common/components/Pagination/Pagination.tsx";
+import {MoviesList} from "@/common/components/MoviesList/MoviesList.tsx";
 
 export const PopularPage = () => {
 
-  const {data, isLoading} = useFetchAllPopularMoviesQuery(1);
+  const [params, setParams] = useSearchParams();
+  const page = Number(params.get("page") ?? 1);
+
+  const handlePageChange = (page: number) => {
+    setParams({page: page.toString()});
+  }
+
+  const {data, isLoading} = useFetchAllPopularMoviesQuery(page);
 
   const favorites = useSelector((state: RootState) => state.favorites.movies);
 
   {
     if (isLoading || !data) return "Крутилка"
   }
-  console.log(data)
+  // console.log(data)
 
   return (
     <div>
@@ -28,23 +34,11 @@ export const PopularPage = () => {
             const isFavorite = favorites.some(item => item.id === movie.id);
 
             return (
-              <div className={s.movie} key={movie.id}>
-                <Link to={`/movie/${movie.id}`} className={s.movieLink}>
-                  <div className={s.imgWrapper}>
-                    {movie.poster_path ? (
-                      <img className={s.movieImg} src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="" />
-                    ) : (
-                      <img className={s.movieImg} src={noImage} alt="" />
-                    )}
-                  </div>
-                  <h3 className={s.movieTitle}>{movie.title}</h3>
-                  <RatingBadge rating={movie.vote_average} />
-                </Link>
-                <FavoriteButton isFavorite={isFavorite} movie={movie} />
-              </div>
+              <MoviesList movie={movie} isFavorite={isFavorite} />
             )
           })}
         </div>
+        <Pagination currentPage={page} totalPages={data.total_pages} onPageChange={handlePageChange} />
       </div>
     </div>
   );

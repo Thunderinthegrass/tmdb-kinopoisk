@@ -11,7 +11,7 @@ export const nowPlayingApi = createApi({
   }),
   endpoints: (build) => ({
     fetchAllNowPlayingMovies: build.query<MoviesResponse, number>({
-      query: (page = 1) => ({url: `movie/now_playing?language=ru-RU&${page}`}),
+      query: (page = 1) => ({url: `movie/now_playing?language=ru-RU&page=${page}`}),
     }),
     fetchNowPlayingMovies: build.query<MoviesResponse, void>({
       query: () => ({method: 'get', url: 'movie/now_playing?language=ru-RU&page=1'}),

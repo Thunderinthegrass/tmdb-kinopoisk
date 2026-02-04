@@ -10,13 +10,14 @@ import {MoviesLayout} from "@/common/components/MoviesLayout/MoviesLayout.tsx";
 import {UpcomingPage} from "@/common/components/UpcomingPage/UpcomingPage.tsx";
 import {TopRatedPage} from "@/common/components/TopRatedPage/TopRatedPage.tsx";
 import {NowPlayingPage} from "@/common/components/NowPlayingPage/NowPlayingPage.tsx";
+import {Navigate} from "react-router-dom";
 
 export const Routing = () => {
   return (
     <Routes>
       <Route index element={<Main />} />
       <Route path={Path.MoviesLayout} element={<MoviesLayout />}>
-        <Route index element={<PopularPage />} />
+        <Route index element={<Navigate to={Path.Popular} replace />} />
         <Route path={Path.Popular} element={<PopularPage />} />
         <Route path={Path.Upcoming} element={<UpcomingPage />} />
         <Route path={Path.TopRated} element={<TopRatedPage />} />

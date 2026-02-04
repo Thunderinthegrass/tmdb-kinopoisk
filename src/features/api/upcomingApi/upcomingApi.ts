@@ -10,6 +10,9 @@ export const upcomingApi = createApi({
     }
   }),
   endpoints: (build) => ({
+    fetchAllUpcomingMovies: build.query<MoviesResponse, number>({
+      query: (page = 1) => ({url: `movie/upcoming?language=ru-RU&page=${page}`}),
+    }),
     fetchUpcomingMovies: build.query<MoviesResponse, void>({
       query: () => ({
         method: 'get',
@@ -25,4 +28,4 @@ export const upcomingApi = createApi({
   })
 })
 
-export const { useFetchUpcomingMoviesQuery } = upcomingApi;
+export const { useFetchUpcomingMoviesQuery, useFetchAllUpcomingMoviesQuery } = upcomingApi;

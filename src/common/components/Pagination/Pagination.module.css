@@ -1,0 +1,21 @@
+.container{
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.pagination {
+    display: flex;
+    gap: 5px;
+}
+.paginationBtn{
+    height: 33px;
+    padding: 0 12px;
+    border: none;
+    background: #e0e5ec;
+    border-radius: 3px;
+}
+.paginationBtnActive{
+    background: #074c98;
+    color: #ffffff;
+}
