@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   sortBy: 'popularity.desc',
   rating: [0, 10],
+  // genres: [28],
   genres: [],
   page: 1,
 }
@@ -25,7 +26,7 @@ const filtersSlice = createSlice({
       const id = action.payload;
 
       if (state.genres.includes(id)) {
-        stata.genres = state.genres.filter(genre => genre !== id);
+        state.genres = state.genres.filter(genre => genre !== id);
       } else {
         state.genres.push(id);
       }

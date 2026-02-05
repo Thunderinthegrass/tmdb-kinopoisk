@@ -17,7 +17,7 @@ export const filtersApi = createApi({
         genres,
         page,
       }) => ({
-        url: 'discover/movie',
+        url: `discover/movie?language=ru-RU&page=${page}`,
         params: {
           sort_by: sortBy,
           'vote_average.gte': ratingGte,
@@ -29,7 +29,7 @@ export const filtersApi = createApi({
     }),
     getGenres: builder.query({
       query: () => ({
-        url: 'genre/movie/list'
+        url: 'genre/movie/list?language=ru-RU'
       })
     })
   })

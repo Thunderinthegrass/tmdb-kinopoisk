@@ -27,7 +27,7 @@ export const getPaginationRange = (
     }
 
     result.push(page);
-    console.log(result)
+    // console.log(result)
     return result;
   }, []);
 };
