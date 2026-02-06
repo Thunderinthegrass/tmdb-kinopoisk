@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   sortBy: 'popularity.desc',
-  rating: [0, 10],
+  rating: [5, 8],
   // genres: [28],
   genres: [],
   page: 1,

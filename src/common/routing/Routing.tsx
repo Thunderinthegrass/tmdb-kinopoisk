@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import {Main} from "@/app/ui/Main/Main.tsx";
 import {Path} from "@/common/routing";
-import {FilteredMovies} from "@/features";
+import {FilteredMoviesPage} from "@/features";
 import {Search} from "@/features";
 import {Favorites} from "@/features";
 import {Movie} from "@/features/Movie/Movie.tsx";
@@ -23,7 +23,7 @@ export const Routing = () => {
         <Route path={Path.TopRated} element={<TopRatedPage />} />
         <Route path={Path.NowPlaying} element={<NowPlayingPage />} />
       </Route>
-      <Route path={Path.FilteredMovies} element={<FilteredMovies />} />
+      <Route path={Path.FilteredMovies} element={<FilteredMoviesPage />} />
       <Route path={Path.Search} element={<Search />} />
       <Route path={Path.Favorites} element={<Favorites />} />
       <Route path={Path.Movie} element={<Movie />} />

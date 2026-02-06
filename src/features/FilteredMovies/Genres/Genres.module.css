@@ -1,0 +1,18 @@
+.genresBlock{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.genreBtn{
+    padding: 5px 12px;
+    border: none;
+    color: #0d253f;
+    background: #daeff1;
+    border-radius: 3px;
+    transition: .2s;
+    cursor: pointer;
+}
+.genreBtnActive{
+    background: #0d253f;
+    color: #ffffff;
+}

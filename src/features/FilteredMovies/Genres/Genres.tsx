@@ -16,13 +16,23 @@ export const Genres = () => {
   }
 
   // console.log(data);
-  console.log(filters)
+  // console.log(filters)
 
   return (
     <div className={s.genresBlock}>
-      {data.genres.map((genre, index) => (
-        <button key={genre.id} onClick={() => dispatch(toggleGenre(genre.id))}>{genre.name}</button>
-      ))}
+
+      {data.genres.map((genre, index) => {
+
+        const isActive = filters.genres.includes(genre.id);
+        console.log(isActive);
+
+        return (
+          <button key={genre.id}
+                  className={isActive ? `${s.genreBtn} ${s.genreBtnActive}` : s.genreBtn}
+                  onClick={() => dispatch(toggleGenre(genre.id))}>{genre.name}
+          </button>
+        )
+      })}
     </div>
   );
 };

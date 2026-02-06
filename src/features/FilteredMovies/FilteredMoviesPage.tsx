@@ -2,15 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {useDiscoverMoviesQuery} from "@/features/api/filtersApi/filtersApi.ts";
 import type {RootState} from "@/app/model/store.ts";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
+import sf from "./FilteredMoviesPage.module.css"
 import sAll from "@/common/components/PopularPage/PopularPage.module.css";
 import {MoviesList} from "@/common/components/MoviesList/MoviesList.tsx";
 import {Pagination} from "@/common/components/Pagination/Pagination.tsx";
 import {useSearchParams} from "react-router-dom";
-import {Genres} from "@/features/FilteredMovies/Genres/Genres.tsx";
+import {FiltersBlock} from "@/features/FilteredMovies/FiltersBlock/FiltersBlock.tsx";
 
-export const FilteredMovies = () => {
+export const FilteredMoviesPage = () => {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const { sortBy, rating, genres, page } = useSelector(state => state.filters);
 
@@ -25,9 +26,9 @@ export const FilteredMovies = () => {
   const favorites = useSelector((state: RootState) => state.favorites.movies);
 
   const [params, setParams] = useSearchParams();
-  const currentPage = Number(params.get("page") ?? 1);
+  const currentPage = Number(params.get("currentPage") ?? 1);
 
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (currentPage: number) => {
     setParams({currentPage: currentPage.toString()});
   }
 
@@ -35,26 +36,25 @@ export const FilteredMovies = () => {
     return <div>Загрузка</div>
   }
 
-  // console.log(data);
+  console.log(data);
 
   return (
     <div className={s.container}>
       <h2>Фильтрация</h2>
-      <div className={`${sAll.moviesWrapper} ${sAll.allMoviesWrapper}`}>
-        {data?.results?.map((movie) => {
+      <div className={sf.filtersPageInner}>
+        <FiltersBlock />
+        <div className={`${sAll.moviesWrapper} ${sAll.allMoviesWrapper}`}>
+          {data?.results?.map((movie) => {
 
-          const isFavorite = favorites.some(item => item.id === movie.id);
+            const isFavorite = favorites.some(item => item.id === movie.id);
 
-          return (
-            <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
-          )
-        })}
+            return (
+              <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
+            )
+          })}
+        </div>
       </div>
-      <div>
-        <h3>Жанры</h3>
-        <Genres />
-      </div>
-      <Pagination currentPage={currentPage} totalPages={data.total_pages} onPageChange={handlePageChange} />
+        <Pagination currentPage={currentPage} totalPages={data.total_pages} onPageChange={handlePageChange} />
     </div>
   );
 };
