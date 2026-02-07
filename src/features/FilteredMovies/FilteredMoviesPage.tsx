@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {useDiscoverMoviesQuery} from "@/features/api/filtersApi/filtersApi.ts";
 import type {RootState} from "@/app/model/store.ts";
 import s from "@/app/ui/Main/SectionsStyles.module.css";
@@ -13,23 +13,23 @@ export const FilteredMoviesPage = () => {
 
   // const dispatch = useDispatch();
 
-  const { sortBy, rating, genres, page } = useSelector(state => state.filters);
-
-  const { data, isLoading } = useDiscoverMoviesQuery({
-    sortBy,
-    ratingGte: rating[0],
-    ratingLte: rating[1],
-    genres,
-    page,
-  })
+  const { sortBy, rating, genres } = useSelector((state: RootState) => state.filters);
 
   const favorites = useSelector((state: RootState) => state.favorites.movies);
 
   const [params, setParams] = useSearchParams();
   const currentPage = Number(params.get("currentPage") ?? 1);
 
-  const handlePageChange = (currentPage: number) => {
-    setParams({currentPage: currentPage.toString()});
+  const { data, isLoading } = useDiscoverMoviesQuery({
+    sortBy,
+    ratingGte: rating[0],
+    ratingLte: rating[1],
+    genres,
+    page: currentPage,
+  })
+
+  const handlePageChange = (newPage: number) => {
+    setParams({currentPage: newPage.toString()});
   }
 
   if (isLoading) {
@@ -54,7 +54,7 @@ export const FilteredMoviesPage = () => {
           })}
         </div>
       </div>
-        <Pagination currentPage={currentPage} totalPages={data.total_pages} onPageChange={handlePageChange} />
+        <Pagination currentPage={currentPage} totalPages={data?.total_pages || 1} onPageChange={handlePageChange} />
     </div>
   );
 };

@@ -1,0 +1,14 @@
+:global .rc-slider-step{
+    background: #165293;
+}
+:global .rc-slider-handle{
+    background: #165293;
+    border: none;
+    opacity: 1;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    &:active{
+        cursor: pointer;
+    }
+}

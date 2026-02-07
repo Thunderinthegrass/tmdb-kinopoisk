@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type {FiltersState} from "@/features/api/popularApi/popularApi.types.ts";
 
-const initialState = {
+
+const initialState: FiltersState = {
   sortBy: 'popularity.desc',
-  rating: [5, 8],
+  rating: [0, 10],
   // genres: [28],
   genres: [],
   page: 1,

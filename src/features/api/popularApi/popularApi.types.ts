@@ -32,3 +32,34 @@ export type SearchMoviesArgs = {
   query: string
   page: number
 }
+
+export interface DiscoverMoviesResponse {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
+}
+
+export interface GenresResponse {
+  genres: Genre[];
+}
+
+export interface DiscoverMoviesParams {
+  sortBy?: string;
+  ratingGte?: number;
+  ratingLte?: number;
+  genres: number[];
+  page: number;
+}
+
+export interface FiltersState {
+  sortBy: string;
+  rating: [number, number];
+  genres: number[]; // Явно указываем тип number[]
+  page: number;
+}

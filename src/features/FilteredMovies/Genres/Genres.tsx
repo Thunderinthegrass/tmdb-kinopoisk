@@ -21,7 +21,7 @@ export const Genres = () => {
   return (
     <div className={s.genresBlock}>
 
-      {data.genres.map((genre, index) => {
+      {data?.genres.map((genre) => {
 
         const isActive = filters.genres.includes(genre.id);
         console.log(isActive);

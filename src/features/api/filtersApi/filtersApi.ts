@@ -1,4 +1,9 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import type {
+  DiscoverMoviesParams,
+  DiscoverMoviesResponse,
+  GenresResponse
+} from "@/features/api/popularApi/popularApi.types.ts";
 
 export const filtersApi = createApi({
   reducerPath: "filtersApi",
@@ -9,7 +14,7 @@ export const filtersApi = createApi({
     }
   }),
   endpoints: (builder) => ({
-    discoverMovies: builder.query({
+    discoverMovies: builder.query<DiscoverMoviesResponse, DiscoverMoviesParams>({
       query: ({
         sortBy,
         ratingGte,
@@ -27,7 +32,7 @@ export const filtersApi = createApi({
         },
       })
     }),
-    getGenres: builder.query({
+    getGenres: builder.query<GenresResponse, void>({
       query: () => ({
         url: 'genre/movie/list?language=ru-RU'
       })
