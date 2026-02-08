@@ -1,0 +1,17 @@
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.movie {
+    display: flex;
+    gap: 15px;
+}
+.movieImg{
+    width: 300px;
+    border-radius: 3px;
+}
+.rating{
+    position: relative;
+}
