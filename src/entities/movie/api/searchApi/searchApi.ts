@@ -20,10 +20,13 @@ export const searchApi = createApi({
         }
       })
     }),
-    getMovie: builder.query<Movie & { year: number }, number>({
+    getMovie: builder.query<Movie, number>({
       query: (id) => ({
         url: `movie/${id}`,
-        params: { language: "ru-RU" }
+        params: {
+          language: "ru-RU",
+          append_to_response: "credits"
+        }
       }),
       transformResponse: (response: Movie) => ({
         ...response,

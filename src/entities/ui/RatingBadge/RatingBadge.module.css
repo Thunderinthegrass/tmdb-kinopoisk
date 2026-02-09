@@ -1,0 +1,16 @@
+.ratingBadge{
+    display: inline-block;
+    text-align: center;
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+.positiveRating{
+    background: #0f910c;
+    color: #ffffff;
+}
+.negativeRating{
+    background: #e5d80a;
+    color: #091b70;
+}

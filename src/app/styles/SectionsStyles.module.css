@@ -16,55 +16,6 @@
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 24px;
 }
-.movie{
-    position: relative;
-    overflow: hidden;
-}
-.movieLink{
-    border-radius: 3px;
-    overflow: hidden;
-    text-decoration: none;
-    color: #06121e;
-}
-.movie:hover > .favoritesBtn{
-    transform: translateY(0);
-}
-.imgWrapper{
-    width: 100%;
-    height: 263px;
-}
-.movieImg{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: .2s;
-}
-.movieImg:hover{
-    transform: scale(1.05);
-}
-.movieTitle{
-    font-size: 16px;
-    font-weight: 400;
-}
-.ratingBadge{
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
-    position: absolute;
-    top: 200px;
-    right: 10px;
-}
-.positiveRating{
-    background: #0f910c;
-    color: #ffffff;
-}
-.negativeRating{
-    background: #e5d80a;
-    color: #091b70;
-}
 .favoritesBtn{
     width: 50px;
     height: 50px;

@@ -1,4 +1,4 @@
-import s from "@/app/styles/SectionsStyles.module.css";
+import s from "./MoviesList.module.css"
 import {Link} from "react-router-dom";
 import noImage from "@/shared/assets/no-image.png";
 import {RatingBadge} from "@/entities/ui/RatingBadge/RatingBadge.tsx";
@@ -22,7 +22,9 @@ export const MoviesList = ({movie, isFavorite}: MoviesListProps) => {
           )}
         </div>
         <h3 className={s.movieTitle}>{movie.title}</h3>
-        <RatingBadge rating={movie.vote_average} />
+        <div className={s.ratingBadgeWrapper}>
+          <RatingBadge rating={movie.vote_average} />
+        </div>
       </Link>
       <FavoriteButton isFavorite={isFavorite} movie={movie} />
     </div>

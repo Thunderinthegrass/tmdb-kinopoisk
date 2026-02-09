@@ -1,0 +1,35 @@
+.movie{
+    position: relative;
+    overflow: hidden;
+}
+.movieLink{
+    border-radius: 3px;
+    overflow: hidden;
+    text-decoration: none;
+    color: #06121e;
+}
+.movie:hover > .favoritesBtn{
+    transform: translateY(0);
+}
+.imgWrapper{
+    width: 100%;
+    height: 263px;
+}
+.movieImg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .2s;
+}
+.movieImg:hover{
+    transform: scale(1.05);
+}
+.movieTitle{
+    font-size: 16px;
+    font-weight: 400;
+}
+.ratingBadgeWrapper{
+    position: absolute;
+    top: 200px;
+    right: 10px;
+}

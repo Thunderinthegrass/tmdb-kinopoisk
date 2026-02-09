@@ -1,4 +1,4 @@
-import s from "@/app/styles/SectionsStyles.module.css";
+import s from "./RatingBadge.module.css"
 
 type RatingBadgeProps = {
   rating: number;
