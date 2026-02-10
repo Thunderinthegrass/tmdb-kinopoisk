@@ -32,8 +32,22 @@ export const searchApi = createApi({
         ...response,
         year: new Date(response.release_date).getFullYear(),
       })
+    }),
+    getSimilarMovies: builder.query<MoviesResponse, number>({
+      query: (id) => ({
+        url: `movie/${id}/similar`,
+        params: {
+          language: "ru-RU",
+        }
+      }),
+      transformResponse: (response: MoviesResponse): MoviesResponse => {
+        return {
+          ...response,
+          results: response.results.slice(0, 6)
+        }
+      }
     })
   })
 })
 
-export const { useSearchMoviesQuery, useGetMovieQuery } = searchApi
+export const { useSearchMoviesQuery, useGetMovieQuery, useGetSimilarMoviesQuery } = searchApi

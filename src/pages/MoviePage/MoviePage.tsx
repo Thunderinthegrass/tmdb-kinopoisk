@@ -2,13 +2,15 @@ import {useParams} from "react-router-dom";
 import {useGetMovieQuery} from "@/entities/movie/api/searchApi/searchApi.ts";
 import s from "./MoviePage.module.css"
 import {RatingBadge} from "@/entities/ui/RatingBadge/RatingBadge.tsx";
+import {Cast} from "@/features/Cast/Cast.tsx";
+import {Similar} from "@/features/Similar/Similar.tsx";
 // import noImage from "@/shared/assets/no-image.png";
 
 export const MoviePage = () => {
   const { id } = useParams();
   const movieId = Number(id);
   const { data, isLoading } = useGetMovieQuery(movieId, { skip: !movieId })
-  console.log(data)
+  // console.log(data)
 
   if (isLoading || !data) return <p>Загрузка...</p>;
 
@@ -44,12 +46,10 @@ export const MoviePage = () => {
         <div className={s.cast}>
           <h2>В фильме снимались:</h2>
           {cast.map((actor) => (
-            <div key={actor.id}>
-              <p>{actor.name}</p>
-              <img className={s.movieImg} src={`https://image.tmdb.org/t/p/original${actor.profile_path}`} alt="" />
-            </div>
+            <Cast id={actor.id} name={actor.name} character={actor.character} profilePath={actor.profile_path} />
           ))}
         </div>
+        <Similar movieId={movieId} />
       </div>
     </div>
   );
