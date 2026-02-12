@@ -4,7 +4,8 @@ import {Routing} from "@/app/providers/routing";
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
 import type { RootState } from '@/app/providers/store/store';
-// import s from './App.module.css'
+import {Footer} from "@/widgets/Footer/Footer.tsx";
+import s from './App.module.css'
 
 function App() {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -16,12 +17,13 @@ function App() {
   }, [theme])
 
   return (
-    <>
+    <div className={s.app}>
       <Header />
-      {/*<div className={s.container}>*/}
+      <div className={s.mainContainer}>
         <Routing />
-      {/*</div>*/}
-    </>
+      </div>
+      <Footer />
+    </div>
   )
 }
 

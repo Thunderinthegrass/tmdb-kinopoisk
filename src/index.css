@@ -2,6 +2,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+    height: 100%;
 
   color-scheme: light dark;
     --text-color: #0c0a0a;
@@ -26,4 +27,5 @@ body.dark {
 body {
     background: var(--bg-color);
     color: var(--text-color);
+    height: 100%;
 }

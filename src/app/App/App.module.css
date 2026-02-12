@@ -1,6 +1,9 @@
-.container {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 15px;
+.app{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.mainContainer {
+
+    flex: 1;
 }
