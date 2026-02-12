@@ -4,16 +4,13 @@ import {useSelector} from "react-redux";
 import type {RootState} from "@/app/providers/store/store.ts";
 import {ShowMoreBtn} from "@/widgets/ShowMoreBtn/ShowMoreBtn.tsx";
 import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
+import {MoviesSectionSkeleton} from "@/pages/Main/MoviesSectionSkeleton/MoviesSectionSkeleton.tsx";
 
 export const UpcomingSection = () => {
 
   const { data, isLoading } = useFetchUpcomingMoviesQuery()
 
   const favorites = useSelector((state: RootState) => state.favorites.movies)
-
-  if (isLoading) {
-    return <div>Загрузка происходит...</div>;
-  }
 
   console.log(data)
   return (
@@ -22,15 +19,18 @@ export const UpcomingSection = () => {
         <h2>Upcoming Movies</h2>
         <ShowMoreBtn path={"upcoming"} />
         <div className={s.moviesWrapper}>
-          {
-            data?.results?.map((movie) => {
-              const isFavorite = favorites.some(item => item.id === movie.id);
+            {isLoading ? (
+              <MoviesSectionSkeleton />
+            ) : (
+              data?.results?.map((movie) => {
 
-              return (
-                <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
-              )
-            })
-          }
+                const isFavorite = favorites.some(item => item.id === movie.id);
+
+                return (
+                  <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
+                )
+              })
+            )}
         </div>
       </div>
     </div>

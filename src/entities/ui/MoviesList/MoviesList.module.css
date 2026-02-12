@@ -6,10 +6,7 @@
     border-radius: 3px;
     overflow: hidden;
     text-decoration: none;
-    color: #06121e;
-}
-.movie:hover > .favoritesBtn{
-    transform: translateY(0);
+    color: var(--text-color);
 }
 .imgWrapper{
     width: 100%;
@@ -27,9 +24,44 @@
 .movieTitle{
     font-size: 16px;
     font-weight: 400;
+    color: var(--text-color);
 }
 .ratingBadgeWrapper{
     position: absolute;
     top: 200px;
     right: 10px;
+}
+.favoritesBtn{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 25px;
+    border: none;
+    background: #26272a;
+    /*opacity: .3;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: .8;
+    transition: .2s;
+    transform: translateY(-300px);
+}
+.favoritesBtn:hover{
+    opacity: 1;
+    background: #112b7c;
+}
+.favoritesBtn img{
+    width: 30px;
+}
+.favoritesBtn.favoritesBtnActive{
+    transform: translateY(0);
+}
+.favoritesBtnActive img{
+    width: 30px;
+}
+.movie:hover .favoritesBtn{
+    transform: translateY(0);
 }

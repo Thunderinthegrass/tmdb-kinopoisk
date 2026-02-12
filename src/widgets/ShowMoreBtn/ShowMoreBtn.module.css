@@ -1,7 +1,8 @@
 .allMoviesLink{
     display: inline-block;
     border: 1px solid #040d42;
-    color: #202021;
+    /*border: 1px solid var(--text-color);*/
+    color: var(--text-color);
     align-self: flex-end;
     padding: 5px 17px;
     text-decoration: none;

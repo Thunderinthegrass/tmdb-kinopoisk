@@ -3,11 +3,11 @@ import {useDiscoverMoviesQuery} from "@/entities/movie/api/filtersApi/filtersApi
 import type {RootState} from "@/app/providers/store/store.ts";
 import s from "@/app/styles/SectionsStyles.module.css";
 import sf from "./FilteredMoviesPage.module.css"
-import sAll from "@/pages/MoviesPages/PopularPage/PopularPage.module.css";
 import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
 import {Pagination} from "@/features/pagination/Pagination.tsx";
 import {useSearchParams} from "react-router-dom";
 import {FiltersBlock} from "@/features/filters/FiltersBlock/FiltersBlock.tsx";
+import {MoviesPageSkeleton} from "@/pages/MoviesPageSceleton/MoviesPageSkeleton.tsx";
 
 export const FilteredMoviesPage = () => {
 
@@ -32,10 +32,6 @@ export const FilteredMoviesPage = () => {
     setParams({currentPage: newPage.toString()});
   }
 
-  if (isLoading) {
-    return <div>Загрузка</div>
-  }
-
   console.log(data);
 
   return (
@@ -43,18 +39,25 @@ export const FilteredMoviesPage = () => {
       <h2>Фильтрация</h2>
       <div className={sf.filtersPageInner}>
         <FiltersBlock />
-        <div className={`${sAll.moviesWrapper} ${sAll.allMoviesWrapper}`}>
-          {data?.results?.map((movie) => {
+        <div className={`${s.moviesWrapper} ${s.allMoviesWrapper}`}>
+          {isLoading ? (
+            <MoviesPageSkeleton />
+          ) : (
+            data?.results?.map((movie) => {
 
-            const isFavorite = favorites.some(item => item.id === movie.id);
+              const isFavorite = favorites.some(item => item.id === movie.id);
 
-            return (
-              <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
-            )
-          })}
+              return (
+                <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
+              )
+            })
+          )}
         </div>
       </div>
-        <Pagination currentPage={currentPage} totalPages={data?.total_pages || 1} onPageChange={handlePageChange} />
+      {!isLoading && data && (
+        <Pagination currentPage={currentPage} totalPages={data.total_pages} onPageChange={handlePageChange} />
+      )}
+
     </div>
   );
 };

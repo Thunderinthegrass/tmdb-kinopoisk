@@ -1,0 +1,15 @@
+.toggleThemeBtn{
+    background: transparent;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+.lightIcon{
+    width: 50px;
+    height: 50px;
+}
+.darkIcon{
+    width: 30px;
+    height: 30px;
+}

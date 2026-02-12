@@ -2,6 +2,7 @@ import s from "./Header.module.css"
 import {Path} from "@/app/providers/routing"
 import {NavLink} from "react-router-dom";
 import logo from "@/shared/assets/logo.svg"
+import {ToggleThemeBtn} from "@/entities/ui/ToggleThemeBtn/ToggleThemeBtn.tsx";
 
 export const Header = () => {
 
@@ -29,6 +30,7 @@ export const Header = () => {
             ))}
           </ul>
         </nav>
+        <ToggleThemeBtn />
       </div>
     </header>
   );

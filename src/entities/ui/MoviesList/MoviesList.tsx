@@ -26,7 +26,7 @@ export const MoviesList = ({movie, isFavorite}: MoviesListProps) => {
           <RatingBadge rating={movie.vote_average} />
         </div>
       </Link>
-      <FavoriteButton isFavorite={isFavorite} movie={movie} />
+      <FavoriteButton className={s.favoritesBtn} isFavorite={isFavorite} movie={movie} />
     </div>
   )
 };

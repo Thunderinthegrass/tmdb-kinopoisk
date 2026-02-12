@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import type {RootState} from "@/app/providers/store/store.ts";
 import {ShowMoreBtn} from "@/widgets/ShowMoreBtn/ShowMoreBtn.tsx";
 import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
+import {MoviesSectionSkeleton} from "@/pages/Main/MoviesSectionSkeleton/MoviesSectionSkeleton.tsx";
 
 export const TopRatedSection = () => {
 
@@ -24,15 +25,18 @@ export const TopRatedSection = () => {
           <h2>Top Rated Movies</h2>
           <ShowMoreBtn path={"top-rated"} />
           <div className={s.moviesWrapper}>
-            {data?.results?.map((movie) => {
+            {isLoading ? (
+              <MoviesSectionSkeleton />
+            ) : (
+              data?.results?.map((movie) => {
 
-              const isFavorite = favorites.some(item => item.id === movie.id);
-              // console.log(isFavorite)
+                const isFavorite = favorites.some(item => item.id === movie.id);
 
-              return (
-                <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
-              )
-            })}
+                return (
+                  <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
+                )
+              })
+            )}
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { searchApi } from "@/entities/movie/api/searchApi/searchApi.ts";
 import {topRatedApi} from "@/entities/movie/api/topRatedApi/topRatedApi.ts";
 import {upcomingApi} from "@/entities/movie/api/upcomingApi/upcomingApi.ts";
 import favoritesReducer from "@/entities/movie/model/favoritesSlice.ts";
+import themeReducer from "@/entities/movie/model/themeSlice.ts";
 import {nowPlayingApi} from "@/entities/movie/api/nowPlayingApi/nowPlayingApi.ts";
 import {filtersApi} from "@/entities/movie/api/filtersApi/filtersApi.ts";
 import filtersReducer from "@/entities/movie/model/filtersSlice.ts";
@@ -14,6 +15,7 @@ export const  store = configureStore({
   reducer: {
     favorites: favoritesReducer,
     filters: filtersReducer,
+    theme: themeReducer,
     [popularApi.reducerPath]: popularApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
     [topRatedApi.reducerPath]: topRatedApi.reducer,

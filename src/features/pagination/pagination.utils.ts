@@ -13,7 +13,7 @@ export const getPaginationRange = (
     }
   }
 
-  // Собираем финальный массив с многоточиями
+  //финальный массив с многоточиями
   return numbers.reduce<(number | string)[]>((result, page, index) => {
     if (index > 0) {
       const prevPage = numbers[index - 1];

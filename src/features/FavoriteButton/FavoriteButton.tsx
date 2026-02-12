@@ -1,4 +1,5 @@
-import s from "@/app/styles/SectionsStyles.module.css";
+// import s from "@/app/styles/SectionsStyles.module.css";
+import s from "@/entities/ui/MoviesList/MoviesList.module.css";
 import heartIconActive from "@/shared/assets/heart-icon-active.svg";
 import heartIcon from "@/shared/assets/heart-icon.svg";
 import type {Movie} from "@/entities/movie/model/types.ts";
@@ -8,6 +9,7 @@ import {useDispatch} from "react-redux";
 type FavoriteButtonProps = {
   isFavorite: boolean;
   movie: Movie;
+  className?: string;
 };
 
 export const FavoriteButton = ({isFavorite, movie}: FavoriteButtonProps) => {

@@ -4,6 +4,7 @@ import type {RootState} from "@/app/providers/store/store.ts";
 import {useFetchNowPlayingMoviesQuery} from "@/entities/movie/api/nowPlayingApi/nowPlayingApi.ts";
 import {ShowMoreBtn} from "@/widgets/ShowMoreBtn/ShowMoreBtn.tsx";
 import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
+import {MoviesSectionSkeleton} from "@/pages/Main/MoviesSectionSkeleton/MoviesSectionSkeleton.tsx";
 
 export const NowPlayingSection = () => {
 
@@ -22,14 +23,18 @@ export const NowPlayingSection = () => {
         <h2>Now Playing Movies</h2>
         <ShowMoreBtn path={"now-playing"} />
         <div className={s.moviesWrapper}>
-          {data?.results?.map((movie) => {
+          {isLoading ? (
+            <MoviesSectionSkeleton />
+          ) : (
+            data?.results?.map((movie) => {
 
-            const isFavorite = favorites.some(item => item.id === movie.id);
+              const isFavorite = favorites.some(item => item.id === movie.id);
 
-            return (
-              <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
-            )
-          })}
+              return (
+                <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
+              )
+            })
+          )}
         </div>
       </div>
     </div>
