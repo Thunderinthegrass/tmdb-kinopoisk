@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type {FiltersState} from "@/entities/movie/model/types.ts";
 
 
-const initialState: FiltersState = {
+export const initialFiltersState: FiltersState = {
   sortBy: 'popularity.desc',
   rating: [0, 10],
   // genres: [28],
@@ -12,7 +12,7 @@ const initialState: FiltersState = {
 
 const filtersSlice = createSlice({
   name: "filters",
-  initialState,
+  initialState: initialFiltersState,
   reducers: {
     setSort: (state, action) => {
       state.sortBy = action.payload;
@@ -38,7 +38,10 @@ const filtersSlice = createSlice({
       state.page = action.payload;
     },
 
-    resetFilters: () => initialState,
+    resetFilters: () => {
+      console.log("ggg")
+      return ({ ...initialFiltersState })
+    }
   }
 })
 

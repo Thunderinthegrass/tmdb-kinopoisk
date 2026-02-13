@@ -24,7 +24,6 @@ export const Genres = () => {
       {data?.genres.map((genre) => {
 
         const isActive = filters.genres.includes(genre.id);
-        console.log(isActive);
 
         return (
           <button key={genre.id}
