@@ -3,7 +3,7 @@
     width: 220px;
 }
 
-.sort-btn {
+.sortBtn {
     width: 100%;
     padding: 10px;
     background: #222;
@@ -12,7 +12,7 @@
     cursor: pointer;
 }
 
-.sort-menu {
+.sortMenu {
     position: absolute;
     top: 100%;
     width: 100%;
@@ -21,9 +21,10 @@
     z-index: 10;
 }
 
-.sort-item {
+.sortItem {
     padding: 10px;
     cursor: pointer;
+    color: #ffffff;
 }
 
 .sort-item:hover {

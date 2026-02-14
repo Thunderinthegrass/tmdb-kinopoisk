@@ -11,6 +11,7 @@ import {UpcomingPage} from "@/pages/MoviesPages/UpcomingPage/UpcomingPage.tsx";
 import {TopRatedPage} from "@/pages/MoviesPages/TopRatedPage/TopRatedPage.tsx";
 import {NowPlayingPage} from "@/pages/MoviesPages/NowPlayingPage/NowPlayingPage.tsx";
 import {Navigate} from "react-router-dom";
+import {PageNotFound} from "@/pages/PageNotFound/PageNotFound.tsx";
 
 export const Routing = () => {
   return (
@@ -27,6 +28,7 @@ export const Routing = () => {
       <Route path={Path.Search} element={<Search />} />
       <Route path={Path.Favorites} element={<Favorites />} />
       <Route path={Path.Movie} element={<MoviePage />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };

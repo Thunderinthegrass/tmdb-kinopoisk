@@ -17,6 +17,7 @@
     height: 100%;
     object-fit: cover;
     transition: .2s;
+    border-radius: 3px;
 }
 .movieImg:hover{
     transform: scale(1.05);

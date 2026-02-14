@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import {useRef, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSort } from "@/entities/movie/model/filtersSlice.ts";
 import type {RootState} from "@/app/providers/store/store.ts";
+import s from "./SortDropdown.module.css";
+import {useClickOutside} from "@/shared/hooks/useClickOutside.ts";
 
 const sortOptions = [
   { label: 'Популярность ↓', value: 'popularity.desc' },
@@ -26,19 +28,23 @@ export const SortDropdown = () => {
     setOpen(false)
   }
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useClickOutside(ref, () => setOpen(false));
+
   return (
-    <div className="sort">
-      <button onClick={() => setOpen(!open)} className="sort-btn">
+    <div ref={ref} className={s.sort}>
+      <button onClick={() => setOpen(!open)} className={s.sortBtn}>
         {active?.label}
       </button>
 
       {open && (
-        <div className="sort-menu">
+        <div className={s.sortMenu}>
           {sortOptions.map(opt => (
             <div
               key={opt.value}
               onClick={() => select(opt.value)}
-              className={`sort-item ${opt.value === sortBy ? 'active' : ''}`}
+              className={`${s.sortItem} ${opt.value === sortBy ? s.active : ''}`}
             >
               {opt.label}
             </div>

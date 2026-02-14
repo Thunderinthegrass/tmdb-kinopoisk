@@ -1,4 +1,4 @@
-import s from "@/pages/MoviePage/MoviePage.module.css";
+import s from "./Cast.module.css";
 
 type CastProps = {
   id: number;
@@ -9,12 +9,12 @@ type CastProps = {
 
 export const Cast = ({id, name, profilePath, character}: CastProps) => {
   return (
-    <div>
-      <div key={id}>
+    <div className={s.castItem} key={id}>
+      <div className={s.movieImgWrapper}>
         <img className={s.movieImg} src={`https://image.tmdb.org/t/p/original${profilePath}`} alt="" />
-        <p>{name}</p>
-        <p>{character}</p>
       </div>
+      <p>{name}</p>
+      <p>{character}</p>
     </div>
   );
 }

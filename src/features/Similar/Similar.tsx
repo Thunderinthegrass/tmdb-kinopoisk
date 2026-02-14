@@ -1,10 +1,8 @@
 import {useGetSimilarMoviesQuery} from "@/entities/movie/api/searchApi/searchApi.ts";
-// import s from "@/entities/ui/MoviesList/MoviesList.module.css";
 import s from "./Similar.module.css"
 import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/providers/store/store.ts";
-// import type {Movie} from "@/entities/movie/model/types.ts";
 
 type SimilarProps = {
   movieId: number;
@@ -22,14 +20,17 @@ export const Similar = ({movieId}: SimilarProps) => {
 
   return (
     <div className={s.similar}>
-      {
-        data.results.map((movie) => {
+      <h2 className={s.similarTitle}>Похожие фильмы:</h2>
+      <div className={s.similarInner}>
+        {
+          data.results.map((movie) => {
 
-          const isFavorite = favorites.some(item => item.id === movie.id);
+            const isFavorite = favorites.some(item => item.id === movie.id);
 
-          return <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
-        })
-      }
+            return <MoviesList key={movie.id} movie={movie} isFavorite={isFavorite} />
+          })
+        }
+      </div>
     </div>
   );
 };

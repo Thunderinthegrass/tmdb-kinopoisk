@@ -4,6 +4,47 @@
     margin: 0 auto;
     padding: 0 15px;
 }
+.movieContent{
+    padding-top: 30px;
+    display: flex;
+    gap: 30px;
+}
+.movieInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.movieTitle{
+    font-size: 30px;
+}
+.movieMeta{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.genres{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.genresList{
+    display: flex;
+    gap: 20px;
+}
+.genresItem{
+    list-style: none;
+    background: #c0c4e1;
+    padding: 5px 12px;
+    border-radius: 3px;
+}
+.castBlock{
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 24px;
+}
+.castTitle{
+    margin-bottom: 20px;
+}
 .movie {
     display: flex;
     gap: 15px;
@@ -14,4 +55,7 @@
 }
 .rating{
     position: relative;
+}
+.backBtn{
+
 }
