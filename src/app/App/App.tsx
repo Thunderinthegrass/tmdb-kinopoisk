@@ -6,9 +6,12 @@ import {useEffect} from "react";
 import type { RootState } from '@/app/providers/store/store';
 import {Footer} from "@/widgets/Footer/Footer.tsx";
 import s from './App.module.css'
+import {useGlobalLoading} from "@/shared/hooks/useGlobalLoading.ts";
+import {Loader} from "@/app/providers/Loader/Loader.tsx";
 
 function App() {
   const theme = useSelector((state: RootState) => state.theme.theme);
+  const isGlobalLoading = useGlobalLoading();
 
   useEffect(() => {
     document.body.classList.remove('light', 'dark');
@@ -19,6 +22,7 @@ function App() {
   return (
     <div className={s.app}>
       <Header />
+      {isGlobalLoading && <Loader />}
       <div className={s.mainContainer}>
         <Routing />
       </div>

@@ -1,18 +1,16 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import type {
   DiscoverMoviesParams,
-  DiscoverMoviesResponse,
-  GenresResponse
 } from "@/entities/movie/model/types.ts";
+import {tmdbApi} from "@/entities/movie/api/tmdbApi.ts";
+import {validate} from "@/shared/lib/zod.ts";
+import {
+  type DiscoverMoviesResponse,
+  DiscoverMoviesResponseSchema, type GenresResponse,
+  GenresResponseSchema
+} from "@/entities/movie/model/schema.ts";
 
-export const filtersApi = createApi({
-  reducerPath: "filtersApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL,
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-    }
-  }),
+export const filtersApi = tmdbApi.injectEndpoints({
+  overrideExisting: false,
   endpoints: (builder) => ({
     discoverMovies: builder.query<DiscoverMoviesResponse, DiscoverMoviesParams>({
       query: ({
@@ -30,12 +28,12 @@ export const filtersApi = createApi({
           with_genres: genres.join(','),
           page,
         },
-      })
+      }),
+      transformResponse: validate(DiscoverMoviesResponseSchema),
     }),
     getGenres: builder.query<GenresResponse, void>({
-      query: () => ({
-        url: 'genre/movie/list?language=ru-RU'
-      })
+      query: () => 'genre/movie/list?language=ru-RU',
+      transformResponse: validate(GenresResponseSchema),
     })
   })
 })

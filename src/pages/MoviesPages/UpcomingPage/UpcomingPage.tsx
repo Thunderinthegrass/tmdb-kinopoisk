@@ -23,12 +23,14 @@ export const UpcomingPage = () => {
 
   const favorites = useSelector((state: RootState) => state.favorites.movies);
 
+  const showSkeleton = isLoading && !data;
+
   // console.log(data)
   return (
     <div className={s.container}>
       <h2>Предстоящие фильмы</h2>
       <div className={`${s.moviesWrapper} ${s.allMoviesWrapper}`}>
-        {isLoading ? (
+        {showSkeleton ? (
           <MoviesPageSkeleton />
         ) : (
           data?.results?.map((movie) => {

@@ -1,14 +1,9 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import type {Movie, MoviesResponse} from "@/entities/movie/model/types.ts";
+// import type {Movie, MoviesResponse} from "@/entities/movie/model/types.ts";
+import {tmdbApi} from "@/entities/movie/api/tmdbApi.ts";
+import type {Movie, MoviesResponse} from "@/entities/movie/model/schema.ts";
 
-export const popularApi = createApi({
-  reducerPath: "popularApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URL,
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-    }
-  }),
+export const popularApi = tmdbApi.injectEndpoints({
+  overrideExisting: false,
   endpoints: (build) => ({
     fetchAllPopularMovies: build.query<MoviesResponse, number>({
       query: (page = 1) => ({url: `movie/popular?language=ru-RU&page=${page}`}),

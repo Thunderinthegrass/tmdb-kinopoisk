@@ -23,6 +23,7 @@ export const Routing = () => {
         <Route path={Path.Upcoming} element={<UpcomingPage />} />
         <Route path={Path.TopRated} element={<TopRatedPage />} />
         <Route path={Path.NowPlaying} element={<NowPlayingPage />} />
+        <Route path="*" element={<PageNotFound />} />
       </Route>
       <Route path={Path.FilteredMovies} element={<FilteredMoviesPage />} />
       <Route path={Path.Search} element={<Search />} />

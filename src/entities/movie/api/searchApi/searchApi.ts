@@ -1,24 +1,20 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import type {Movie, SearchMoviesArgs, MoviesResponse} from "@/entities/movie/model/types.ts";
+import type { SearchMoviesArgs } from "@/entities/movie/model/types.ts";
+import {tmdbApi} from "@/entities/movie/api/tmdbApi.ts";
+import {type Movie, MovieSchema, type MoviesResponse, MoviesResponseSchema} from "@/entities/movie/model/schema.ts";
+import {validate, validateAndTransform} from "@/shared/lib/zod.ts";
 
-export const searchApi = createApi({
-  reducerPath: 'searchApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.themoviedb.org/3/',
-    headers: {
-      Authorization: `Bearer ${import.meta.env.VITE_TMDB_TOKEN}`,
-    }
-  }),
+export const searchApi = tmdbApi.injectEndpoints({
+  overrideExisting: false,
   endpoints: (builder) => ({
     searchMovies: builder.query<MoviesResponse, SearchMoviesArgs>({
       query: ({query, page}) => ({
-        // url: 'search/movie?include_adult=false&language=en-US&page=4',
         url: 'search/movie?language=ru-RU',
         params: {
           query: query.trim(),
           page
         }
-      })
+      }),
+      transformResponse: validate(MoviesResponseSchema),
     }),
     getMovie: builder.query<Movie, number>({
       query: (id) => ({
@@ -28,10 +24,7 @@ export const searchApi = createApi({
           append_to_response: "credits"
         }
       }),
-      transformResponse: (response: Movie) => ({
-        ...response,
-        year: new Date(response.release_date).getFullYear(),
-      })
+      transformResponse: validate(MovieSchema),
     }),
     getSimilarMovies: builder.query<MoviesResponse, number>({
       query: (id) => ({
@@ -40,12 +33,13 @@ export const searchApi = createApi({
           language: "ru-RU",
         }
       }),
-      transformResponse: (response: MoviesResponse): MoviesResponse => {
-        return {
-          ...response,
-          results: response.results.slice(0, 6)
-        }
-      }
+      transformResponse: validateAndTransform(
+        MoviesResponseSchema,
+        (data) => ({
+          ...data,
+          results: data.results.slice(0, 6),
+        })
+      )
     })
   })
 })

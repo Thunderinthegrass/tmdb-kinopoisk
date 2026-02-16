@@ -5,7 +5,6 @@ import {RatingBadge} from "@/entities/ui/RatingBadge/RatingBadge.tsx";
 import {Cast} from "@/features/Cast/Cast.tsx";
 import {Similar} from "@/features/Similar/Similar.tsx";
 import {formatRuntime} from "@/shared/utils/formatRuntime.ts";
-// import noImage from "@/shared/assets/no-image.png";
 
 export const MoviePage = () => {
   const navigate = useNavigate();
@@ -15,10 +14,14 @@ export const MoviePage = () => {
   const { data, isLoading } = useGetMovieQuery(movieId, { skip: !movieId })
   // console.log(data)
 
+  if (Number.isNaN(movieId)) {
+    return <p>Такой фильм не найден</p>;
+  }
+
   if (isLoading || !data) return <p>Загрузка...</p>;
 
 
-  const cast = data.credits.cast.slice(0, 6);
+  const cast = data.credits?.cast.slice(0, 6);
 
   return (
     <div className={s.movie}>
@@ -52,7 +55,7 @@ export const MoviePage = () => {
             <div className={s.genres}>
               <h2 className={s.genresTitle}>Жанры</h2>
               <ul className={s.genresList}>
-                {data.genres.map((genre) => (
+                {data.genres?.map((genre) => (
                   <li key={genre.id} className={s.genresItem}>{genre.name}</li>
                 ))}
               </ul>
@@ -62,7 +65,7 @@ export const MoviePage = () => {
         <div className={s.cast}>
           <h2 className={s.castTitle}>В фильме снимались:</h2>
           <div className={s.castBlock}>
-            {cast.map((actor) => (
+            {cast?.map((actor) => (
               <Cast key={actor.id} id={actor.id} name={actor.name} character={actor.character} profilePath={actor.profile_path} />
             ))}
           </div>
