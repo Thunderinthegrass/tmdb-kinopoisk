@@ -5,6 +5,7 @@ import {RatingBadge} from "@/entities/ui/RatingBadge/RatingBadge.tsx";
 import {Cast} from "@/features/Cast/Cast.tsx";
 import {Similar} from "@/features/Similar/Similar.tsx";
 import {formatRuntime} from "@/shared/utils/formatRuntime.ts";
+import {MoviePageSkeleton} from "@/pages/MoviePageSceleton/MoviePageSkeleton.tsx";
 
 export const MoviePage = () => {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export const MoviePage = () => {
     return <p>Такой фильм не найден</p>;
   }
 
-  if (isLoading || !data) return <p>Загрузка...</p>;
+  if (isLoading || !data) return <MoviePageSkeleton />;
 
 
   const cast = data.credits?.cast.slice(0, 6);

@@ -1,80 +1,11 @@
-export interface MoviesResponse {
-  page: number;
-  results: Movie[];
-  total_pages: number;
-  total_results: number;
-}
-
-export interface Movie {
-  adult: boolean;
-  backdrop_path: string | null;
-  credits: Credits;
-  genres: Genre[];
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string | null;
-  release_date: string; // ISO date: YYYY-MM-DD
-  runtime: number;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-  year: number;
-}
-
-export interface SearchMoviesResponse {
-  page: number;
-  results: Movie[];
-  total_pages: number;
-  total_results: number;
-}
 export type SearchMoviesArgs = {
   query: string
   page: number
 }
 
-export interface DiscoverMoviesResponse {
-  page: number;
-  results: Movie[];
-  total_pages: number;
-  total_results: number;
-}
-
-export interface Genre {
-  id: number;
-  name: string;
-}
-
-export interface GenresResponse {
-  genres: Genre[];
-}
-
-type Cast = {
-  id: number;
-  name: string;
-  character: string;
-  profile_path: string | null;
-};
-
-export type Credits = {
-  cast: Cast[];
-};
-
-export interface DiscoverMoviesParams {
-  sortBy?: string;
-  ratingGte?: number;
-  ratingLte?: number;
-  genres: number[];
-  page: number;
-}
-
 export interface FiltersState {
   sortBy: string;
   rating: [number, number];
-  genres: number[]; // Явно указываем тип number[]
+  genres: number[];
   page: number;
 }

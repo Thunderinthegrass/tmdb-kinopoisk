@@ -65,7 +65,7 @@ export const Search = () => {
             );
           })}
         </div>
-        {query && !isLoading && data && (
+        {query && !isLoading && data && data?.results?.length > 0 && (
           <Pagination
             currentPage={page}
             totalPages={data.total_pages}

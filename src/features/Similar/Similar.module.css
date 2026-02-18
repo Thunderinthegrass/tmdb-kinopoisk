@@ -4,3 +4,33 @@
     gap: 24px;
     padding: 20px 0 30px;
 }
+.similarTitleSceleton{
+    height: 36px;
+    width: 300px;
+    border-radius: 3px;
+    margin: 20px 0;
+}
+.skeletonCard {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    border-radius: 3px;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+.sceleton{
+    background: linear-gradient(
+            100deg,
+            #de1111 25%,
+            #1fb03c 37%,
+            #099ab4 63%
+    );
+    background-size: 150% 100%;
+    animation: shimmer 1.4s ease infinite;
+}
