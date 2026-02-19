@@ -6,7 +6,7 @@
 .sortBtn {
     width: 100%;
     padding: 10px;
-    background: #222;
+    background: #091b70;
     color: white;
     border: 1px solid #444;
     cursor: pointer;
@@ -16,7 +16,7 @@
     position: absolute;
     top: 100%;
     width: 100%;
-    background: #111;
+    background: #0c2a93;
     border: 1px solid #444;
     z-index: 10;
 }
@@ -25,6 +25,7 @@
     padding: 10px;
     cursor: pointer;
     color: #ffffff;
+    border-bottom: 1px solid #6979cc;
 }
 
 .sort-item:hover {

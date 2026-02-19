@@ -25,7 +25,7 @@ export const filtersApi = tmdbApi.injectEndpoints({
           sort_by: sortBy,
           'vote_average.gte': ratingGte,
           'vote_average.lte': ratingLte,
-          with_genres: genres.join(','),
+          with_genres: genres?.join(','),
           page,
         },
       }),

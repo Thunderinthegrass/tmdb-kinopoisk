@@ -1,5 +1,12 @@
 import { z } from "zod";
 
+export const FavoriteMovie = z.object({
+  id: z.number(),
+  title: z.string(),
+  poster_path: z.string().nullable(),
+  vote_average: z.number(),
+})
+
 export const CastSchema = z.object({
   id: z.number(),
   name: z.string(),
@@ -57,6 +64,7 @@ export const GenresResponseSchema = z.object({
 });
 
 export type Movie = z.infer<typeof MovieSchema>;
+export type FavoriteMovie = z.infer<typeof FavoriteMovie>;
 export type MoviesResponse = z.infer<typeof MoviesResponseSchema>;
 export type Genre = z.infer<typeof GenreSchema>;
 export type GenresResponse = z.infer<typeof GenresResponseSchema>;

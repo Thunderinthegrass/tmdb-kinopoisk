@@ -1,31 +1,33 @@
-import type {Movie} from "@/entities/movie/model/types.ts";
-import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { Movie, FavoriteMovie } from "./schema";
+import {loadFavorites, mapMovieToFavorite} from "@/shared/utils/favoritesUtils.ts";
 
 type FavoritesState = {
-  movies: Movie[];
-}
+  movies: FavoriteMovie[];
+};
 
 const initialState: FavoritesState = {
-  movies: JSON.parse(localStorage.getItem("favorites") || "[]")
-}
+  movies: loadFavorites(),
+};
 
 const favoritesSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
     addToFavorites(state, action: PayloadAction<Movie>) {
-      const existingMovie = state.movies.some(movie => movie.id === action.payload.id);
-      if (!existingMovie) {
-        state.movies.push(action.payload);
+      const exists = state.movies.some(m => m.id === action.payload.id);
+      if (!exists) {
+        const favorite = mapMovieToFavorite(action.payload);
+        state.movies.push(favorite);
         localStorage.setItem("favorites", JSON.stringify(state.movies));
       }
     },
     removeFromFavorites(state, action: PayloadAction<Movie>) {
-      state.movies = state.movies.filter(movie => movie.id !== action.payload.id);
+      state.movies = state.movies.filter(m => m.id !== action.payload.id);
       localStorage.setItem("favorites", JSON.stringify(state.movies));
-    }
-  }
-})
+    },
+  },
+});
 
-export const {addToFavorites, removeFromFavorites} = favoritesSlice.actions;
+export const { addToFavorites, removeFromFavorites } = favoritesSlice.actions;
 export default favoritesSlice.reducer;
