@@ -1,6 +1,6 @@
 import s from "./Header.module.css"
 import {Path} from "@/app/providers/routing"
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import logo from "@/shared/assets/logo.svg"
 import {ToggleThemeBtn} from "@/entities/ui/ToggleThemeBtn/ToggleThemeBtn.tsx";
 
@@ -16,9 +16,9 @@ export const Header = () => {
   return (
     <header className={s.header}>
       <div className={s.container}>
-        <a className={s.logo} href='https://www.themoviedb.org/' target="_blank">
+        <Link className={s.logo} to="/">
           <img src={logo} alt="logo" />
-        </a>
+        </Link>
         <nav className={s.mainNav}>
           <ul className={s.navItems}>
             {navItems.map((item) => (

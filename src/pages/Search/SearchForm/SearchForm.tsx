@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import {useNavigate, useSearchParams} from "react-router-dom";
 import * as React from "react";
 import s from "./SearchForm.module.css"
@@ -8,6 +8,10 @@ export const SearchForm = () => {
   const query = params.get("query") ?? "";
   const [value, setValue] = useState(query || "");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setValue(query);
+  }, [query]);
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();

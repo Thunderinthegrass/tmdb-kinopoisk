@@ -1,4 +1,3 @@
-import {useSearchParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/providers/store/store.ts";
 import {useFetchAllTopRatedMoviesQuery} from "@/entities/movie/api/topRatedApi/topRatedApi.ts";
@@ -6,18 +5,10 @@ import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
 import {Pagination} from "@/features/pagination/Pagination.tsx";
 import s from "@/app/styles/SectionsStyles.module.css";
 import {MoviesPageSkeleton} from "@/pages/MoviesPageSceleton/MoviesPageSkeleton.tsx";
+import {usePageNavigation} from "@/shared/hooks/usePageNavigation.ts";
 
 export const TopRatedPage = () => {
-  const [params, setParams] = useSearchParams();
-  const page = Number(params.get("page") ?? 1);
-
-  const handlePageChange = (newPage: number) => {
-    setParams(prev => {
-      const next = new URLSearchParams(prev);
-      next.set("page", newPage.toString());
-      return next;
-    });
-  };
+  const { page, goToPage } = usePageNavigation();
 
   const {data, isLoading} = useFetchAllTopRatedMoviesQuery(page);
 
@@ -42,7 +33,7 @@ export const TopRatedPage = () => {
         )}
       </div>
       {!isLoading && data && (
-        <Pagination currentPage={page} totalPages={data.total_pages} onPageChange={handlePageChange} />
+        <Pagination currentPage={page} totalPages={data.total_pages} onPageChange={goToPage} />
       )}
     </div>
   );

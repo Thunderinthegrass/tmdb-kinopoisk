@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type {FiltersState} from "@/entities/movie/model/types.ts";
+import {createSlice, type PayloadAction} from "@reduxjs/toolkit";
+import type {FiltersState, SortBy} from "@/entities/movie/model/types.ts";
 
 
 export const initialFiltersState: FiltersState = {
@@ -14,17 +14,17 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState: initialFiltersState,
   reducers: {
-    setSort: (state, action) => {
+    setSort: (state, action: PayloadAction<SortBy>) => {
       state.sortBy = action.payload;
       state.page = 1;
     },
 
-    setRating: (state, action) => {
+    setRating: (state, action: PayloadAction<[number, number]>) => {
       state.rating = action.payload;
       state.page = 1;
     },
 
-    toggleGenre: (state, action) => {
+    toggleGenre: (state, action: PayloadAction<number>) => {
       const id = action.payload;
 
       if (state.genres.includes(id)) {
@@ -34,7 +34,7 @@ const filtersSlice = createSlice({
       }
     },
 
-    setPage: (state, action) => {
+    setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
 

@@ -1,22 +1,25 @@
 import {useFetchAllPopularMoviesQuery} from "@/entities/movie/api/popularApi/popularApi.ts";
 import s from "@/app/styles/SectionsStyles.module.css";
-import {useSearchParams} from "react-router-dom";
+import { usePageNavigation } from "@/shared/hooks/usePageNavigation.ts"
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/providers/store/store.ts";
 import {Pagination} from "@/features/pagination/Pagination.tsx";
 import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
 import {MoviesPageSkeleton} from "@/pages/MoviesPageSceleton/MoviesPageSkeleton.tsx";
+import {useEffect} from "react";
+import {toast} from "react-toastify";
 
 export const PopularPage = () => {
 
-  const [params, setParams] = useSearchParams();
-  const page = Number(params.get("page") ?? 1);
+  const { page, goToPage } = usePageNavigation();
 
-  const handlePageChange = (page: number) => {
-    setParams({page: page.toString()});
-  }
+  const {data, isLoading, isError} = useFetchAllPopularMoviesQuery(page);
 
-  const {data, isLoading} = useFetchAllPopularMoviesQuery(page);
+  useEffect(() => {
+    if (isError) {
+      toast.error("Ошибка сети");
+    }
+  }, [isError]);
 
   const favorites = useSelector((state: RootState) => state.favorites.movies);
 
@@ -42,7 +45,7 @@ export const PopularPage = () => {
           )}
         </div>
         {!isLoading && data && (
-        <Pagination currentPage={page} totalPages={data.total_pages} onPageChange={handlePageChange} />)}
+        <Pagination currentPage={page} totalPages={data.total_pages} onPageChange={goToPage} />)}
       </div>
     </div>
   );

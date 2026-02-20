@@ -28,9 +28,8 @@ export const Search = () => {
     data,
     isLoading,
     isFetching,
-    isUninitialized,
     isError,
-  } = useSearchMoviesQuery({ query, page }, { skip: !query });
+  } = useSearchMoviesQuery({ query, page }, { skip: !query.trim() });
   console.log(data)
 
   return (
@@ -49,15 +48,16 @@ export const Search = () => {
           <div className={s.fetchingOverlay}>Обновляются данные, немножко надо подождать...</div>
         )}
 
-        {isUninitialized &&
+        {!query && (
           <p>
-          Введите какое-нибудь название фильма и нажмите кнопку "Поиск", либо Enter на клавиатуре
-        </p>}
+            Введите какое-нибудь название фильма и нажмите кнопку "Поиск", либо Enter на клавиатуре
+          </p>
+        )}
 
         <div className={s.movieContainer}>
           {query && !data && <MoviesPageSkeleton />}
 
-          {data?.results?.map((movie) => {
+          {query && data?.results?.map((movie) => {
             const isFavorite = favorites.some(item => item.id === movie.id);
 
             return (

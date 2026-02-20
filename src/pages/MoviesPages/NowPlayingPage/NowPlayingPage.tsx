@@ -1,4 +1,3 @@
-import {useSearchParams} from "react-router-dom";
 import {useFetchAllNowPlayingMoviesQuery} from "@/entities/movie/api/nowPlayingApi/nowPlayingApi.ts";
 import {useSelector} from "react-redux";
 import type {RootState} from "@/app/providers/store/store.ts";
@@ -6,14 +5,11 @@ import s from "@/app/styles/SectionsStyles.module.css";
 import {MoviesList} from "@/entities/ui/MoviesList/MoviesList.tsx";
 import {Pagination} from "@/features/pagination/Pagination.tsx";
 import {MoviesPageSkeleton} from "@/pages/MoviesPageSceleton/MoviesPageSkeleton.tsx";
+import {usePageNavigation} from "@/shared/hooks/usePageNavigation.ts";
 
 export const NowPlayingPage = () => {
-  const [params, setParams] = useSearchParams();
-  const page = Number(params.get("page") ?? 1);
 
-  const handlePageChange = (page: number) => {
-    setParams({page: page.toString()});
-  }
+  const { page, goToPage } = usePageNavigation();
 
   const {data, isLoading} = useFetchAllNowPlayingMoviesQuery(page);
 
@@ -39,7 +35,7 @@ export const NowPlayingPage = () => {
         )}
       </div>
       {!isLoading && data && (
-        <Pagination currentPage={page} totalPages={data.total_pages} onPageChange={handlePageChange} />
+        <Pagination currentPage={page} totalPages={data.total_pages} onPageChange={goToPage} />
       )}
     </div>
   );

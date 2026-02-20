@@ -18,6 +18,8 @@ export const Similar = ({movieId}: SimilarProps) => {
 
   console.log(data)
 
+  if (!data?.results?.length) return null;
+
   return (
     <div className={s.similar}>
       <h2 className={s.similarTitle}>Похожие фильмы:</h2>

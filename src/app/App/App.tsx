@@ -8,6 +8,7 @@ import {Footer} from "@/widgets/Footer/Footer.tsx";
 import s from './App.module.css'
 import {useGlobalLoading} from "@/shared/hooks/useGlobalLoading.ts";
 import {Loader} from "@/app/providers/Loader/Loader.tsx";
+import {ToastContainer} from "react-toastify";
 
 function App() {
   const theme = useSelector((state: RootState) => state.theme.theme);
@@ -22,6 +23,17 @@ function App() {
   return (
     <div className={s.app}>
       <Header />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}  // авто-закрытие через 5 секунд
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       {isGlobalLoading && <Loader />}
       <div className={s.mainContainer}>
         <Routing />

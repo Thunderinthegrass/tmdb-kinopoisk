@@ -1,4 +1,3 @@
-// import type {Movie, MoviesResponse} from "@/entities/movie/model/types.ts";
 import {tmdbApi} from "@/entities/movie/api/tmdbApi.ts";
 import type {Movie, MoviesResponse} from "@/entities/movie/model/schema.ts";
 

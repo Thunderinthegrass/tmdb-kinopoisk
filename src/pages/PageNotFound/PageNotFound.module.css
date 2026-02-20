@@ -1,0 +1,25 @@
+.pageNotFound{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.fourZeroFour{
+    font-size: 80px;
+}
+.toMainLink{
+    background: #074c98;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 15px;
+    margin-top: 30px;
+    border-radius: 3px;
+    transition: .3s;
+    &:hover{
+        background: #063467;
+    }
+    &:active{
+        background: #155194;
+    }
+}

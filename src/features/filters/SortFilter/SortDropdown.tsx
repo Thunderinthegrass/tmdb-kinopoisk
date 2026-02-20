@@ -4,14 +4,15 @@ import { setSort } from "@/entities/movie/model/filtersSlice.ts";
 import type {RootState} from "@/app/providers/store/store.ts";
 import s from "./SortDropdown.module.css";
 import {useClickOutside} from "@/shared/hooks/useClickOutside.ts";
+import type {SortBy} from "@/entities/movie/model/types.ts";
 
-const sortOptions = [
+const sortOptions: { label: string; value: SortBy }[] = [
   { label: 'Популярность ↓', value: 'popularity.desc' },
   { label: 'Популярность ↑', value: 'popularity.asc' },
   { label: 'Рейтинг ↓', value: 'vote_average.desc' },
   { label: 'Рейтинг ↑', value: 'vote_average.asc' },
-  { label: 'Дата ↓', value: 'primary_release_date.desc' },
-  { label: 'Дата ↑', value: 'primary_release_date.asc' },
+  { label: 'Дата ↓', value: 'release_date.desc' },
+  { label: 'Дата ↑', value: 'release_date.asc' },
   { label: 'Название A-Z', value: 'original_title.asc' },
   { label: 'Название Z-A', value: 'original_title.desc' },
 ]
@@ -23,7 +24,7 @@ export const SortDropdown = () => {
 
   const active = sortOptions.find(o => o.value === sortBy)
 
-  const select = (value: string) => {
+  const select = (value: SortBy) => {
     dispatch(setSort(value))
     setOpen(false)
   }

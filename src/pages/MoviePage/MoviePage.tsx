@@ -63,14 +63,18 @@ export const MoviePage = () => {
             </div>
           </div>
         </div>
-        <div className={s.cast}>
+        {cast?.length ? (<div className={s.cast}>
           <h2 className={s.castTitle}>В фильме снимались:</h2>
           <div className={s.castBlock}>
             {cast?.map((actor) => (
-              <Cast key={actor.id} id={actor.id} name={actor.name} character={actor.character} profilePath={actor.profile_path} />
+              <Cast key={actor.id}
+                    id={actor.id}
+                    name={actor.name}
+                    character={actor.character}
+                    profilePath={actor.profile_path} />
             ))}
           </div>
-        </div>
+        </div>) : null}
         <Similar movieId={movieId} />
       </div>
     </div>
