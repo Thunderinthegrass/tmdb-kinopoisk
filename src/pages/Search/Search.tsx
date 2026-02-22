@@ -41,7 +41,7 @@ export const Search = () => {
         {isError && <p>Ошибка загрузки данных</p>}
 
         {!isLoading && query && !data?.results?.length && (
-          <p>Фильмы не найдены</p>
+          <p>No matches found for …</p>
         )}
 
         {isFetching && !isLoading && (

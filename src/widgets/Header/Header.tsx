@@ -11,7 +11,7 @@ export const Header = () => {
     {to: Path.MoviesLayout, label: "Category Movies"},
     {to: Path.FilteredMovies, label: "Filtered Movies"},
     {to: Path.Search, label: "Search"},
-    {to: Path.Favorites, label: "Favorites Movies"},
+    {to: Path.Favorites, label: "Favorites"},
   ]
   return (
     <header className={s.header}>

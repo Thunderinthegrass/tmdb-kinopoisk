@@ -12,7 +12,7 @@ import {TopRatedPage} from "@/pages/MoviesPages/TopRatedPage/TopRatedPage.tsx";
 import {NowPlayingPage} from "@/pages/MoviesPages/NowPlayingPage/NowPlayingPage.tsx";
 import {Navigate} from "react-router-dom";
 import {PageNotFound} from "@/pages/PageNotFound/PageNotFound.tsx";
-import {MoviePageSkeleton} from "@/pages/MoviePageSceleton/MoviePageSkeleton.tsx";
+import {MoviesNotFound} from "@/entities/ui/MoviesNotFound/MoviesNotFound.tsx";
 
 export const Routing = () => {
   return (
@@ -24,13 +24,12 @@ export const Routing = () => {
         <Route path={Path.Upcoming} element={<UpcomingPage />} />
         <Route path={Path.TopRated} element={<TopRatedPage />} />
         <Route path={Path.NowPlaying} element={<NowPlayingPage />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<MoviesNotFound />} />
       </Route>
       <Route path={Path.FilteredMovies} element={<FilteredMoviesPage />} />
       <Route path={Path.Search} element={<Search />} />
       <Route path={Path.Favorites} element={<Favorites />} />
       <Route path={Path.Movie} element={<MoviePage />} />
-      {/*<Route path={Path.Movie} element={<MoviePageSkeleton />} />*/}
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

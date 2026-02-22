@@ -1,6 +1,7 @@
 import { useNavigate, useParams} from "react-router-dom";
 import {useGetMovieQuery} from "@/entities/movie/api/searchApi/searchApi.ts";
 import s from "./MoviePage.module.css"
+import noImage from "@/shared/assets/no-image.png";
 import {RatingBadge} from "@/entities/ui/RatingBadge/RatingBadge.tsx";
 import {Cast} from "@/features/Cast/Cast.tsx";
 import {Similar} from "@/features/Similar/Similar.tsx";
@@ -24,6 +25,8 @@ export const MoviePage = () => {
 
   const cast = data.credits?.cast.slice(0, 6);
 
+  const posterUrl = data.poster_path ? `https://image.tmdb.org/t/p/original${data.poster_path}` : noImage;
+
   return (
     <div className={s.movie}>
       <div className={s.container}>
@@ -38,7 +41,7 @@ export const MoviePage = () => {
         </button>
         <div className={s.movieContent}>
           <div className={s.movieImgWrapper}>
-            <img src={`https://image.tmdb.org/t/p/original${data.poster_path}`} className={s.movieImg}
+            <img src={posterUrl} className={s.movieImg}
                  alt={data.title} />
           </div>
           <div className={s.movieInfo}>

@@ -69,3 +69,4 @@ export type MoviesResponse = z.infer<typeof MoviesResponseSchema>;
 export type Genre = z.infer<typeof GenreSchema>;
 export type GenresResponse = z.infer<typeof GenresResponseSchema>;
 export type DiscoverMoviesResponse = z.infer<typeof DiscoverMoviesResponseSchema>;
+export type FavoritePayload = z.infer<typeof FavoriteMovie>;
