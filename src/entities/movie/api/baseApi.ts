@@ -20,8 +20,16 @@ export const baseQueryWithErrorHandling: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   const result = await baseQueryWithAuth(args, api, extraOptions);
 
-  if (result.error && (result.error.status === 401 || result.error.status === 403)) {
-    toast.error("Невалидный токен. Пожалуйста, проверьте токен.");
+  if (result.error) {
+    if (typeof result.error.status === "number") {
+      if (result.error.status === 401 || result.error.status === 403) {
+        toast.error("Невалидный токен. Пожалуйста, проверьте токен.");
+      } else if (result.error.status >= 500) {
+        toast.error("Ошибка сервера. Попробуйте позже.");
+      }
+    } else {
+      toast.error("Ошибка сети. Проверьте подключение.");
+    }
   }
 
   return result;

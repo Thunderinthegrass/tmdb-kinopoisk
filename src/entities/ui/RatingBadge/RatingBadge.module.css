@@ -10,7 +10,11 @@
     background: #0f910c;
     color: #ffffff;
 }
-.negativeRating{
+.middleRating{
     background: #e5d80a;
     color: #091b70;
+}
+.negativeRating{
+    background: #e30f0f;
+    color: #ffffff;
 }

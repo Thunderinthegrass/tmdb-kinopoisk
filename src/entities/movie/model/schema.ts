@@ -27,7 +27,7 @@ export const MovieSchema = z
   .object({
     adult: z.boolean(),
     backdrop_path: z.string().nullable(),
-    credits: CreditsSchema.optional(),
+    credits: CreditsSchema.nullable().optional(),
     genres: z.array(GenreSchema).optional(),
     genre_ids: z.array(z.number()).optional(),
     id: z.number(),
@@ -43,18 +43,27 @@ export const MovieSchema = z
     vote_average: z.number(),
     vote_count: z.number(),
   })
-  .transform((movie) => ({
-    ...movie,
-    year: movie.release_date
+  .transform((movie) => {
+    const year = movie.release_date
       ? new Date(movie.release_date).getFullYear()
-      : null,
-  }));
+      : null;
+
+    return {
+      ...movie,
+      year: Number.isNaN(year) ? null : year,
+    };
+  });
 
 export const MoviesResponseSchema = z.object({
   page: z.number(),
   results: z.array(MovieSchema),
   total_pages: z.number(),
   total_results: z.number(),
+});
+
+export const SearchMoviesArgsSchema = z.object({
+  query: z.string().min(1),
+  page: z.number().min(1).optional(),
 });
 
 export const DiscoverMoviesResponseSchema = MoviesResponseSchema;

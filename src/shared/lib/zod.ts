@@ -14,8 +14,8 @@ export const validate =
     };
 
 export const validateAndTransform =
-  <T>(schema: z.ZodSchema<T>, transform: (data: T) => T) =>
-    (response: unknown): T => {
+  <T, R>(schema: z.ZodSchema<T>, transform: (data: T) => R) =>
+    (response: unknown): R => {
       const data = validate(schema)(response);
       return transform(data);
     };
